@@ -26,10 +26,21 @@ var num2 = 0
 
 var num3 = -7
 // Expected output: "-7 is not divisible by three"
-
+describe('divByThree', () => {
+  it('says 15 is divisible by three', () => {
+    expect(divByThree(15)).toEqual('15 is divisible by three')
+  })
+  it('says 0 is divisible by three', () => {
+    expect(divByThree(0)).toEqual('0 is divisible by three')
+  })
+  it('says -7 is not divisible by three', () => {
+    expect(divByThree(-7)).toEqual('-7 is not divisible by three')
+  })
+})
 
 
 // b) Create the function that makes the test pass.
+const divByThree = int => int%3 == 0 ? `${int} is divisible by three` : `${int} is not divisible by three` //implicit return with one-line function
 
 
 
@@ -43,11 +54,25 @@ var randomNouns1 = ["streetlamp", "potato", "teeth", "conclusion", "nephew"]
 var randomNouns2 = ["temperature", "database", "chopsticks", "mango", "deduction"]
 // Expected output: ["Temperature", "Database", "Chopsticks", "Mango", "Deduction"]
 
-
+describe('capitalizeFirst', () => {
+  it('capitalizes the first letter of each word in an array', () => {
+    expect(capitalizeFirst(randomNouns1)).toEqual(["Streetlamp", "Potato", "Teeth", "Conclusion", "Nephew"])
+    expect(capitalizeFirst(randomNouns2)).toEqual(["Temperature", "Database", "Chopsticks", "Mango", "Deduction"])
+  })
+})
 
 // b) Create the function that makes the test pass.
-
-
+// call toUpperCase() on the first letter of each entry
+const capitalizeFirst = arr => {
+  let answer = [] // to hold our solution
+  let temp // to hold the capitalized form of the current iteration
+  for(let word of arr){
+    temp = word.split('')
+    temp[0] = temp[0].toUpperCase()
+    answer.push(temp.join(''))
+  }
+  return answer
+}
 
 // --------------------3) Create a function that takes in a string and logs the index of the first vowel.
 
@@ -60,6 +85,19 @@ var vowelTester2 = "academy"
 var vowelTester3 = "challenge"
 // Expected output: 2
 
-
+describe('vowelIndex', () => {
+  it('tells us the index of the first vowel', () => {
+    expect(vowelIndex(vowelTester1)).toEqual(1)
+    expect(vowelIndex(vowelTester2)).toEqual(0)
+    expect(vowelIndex(vowelTester3)).toEqual(2)
+  })
+})
 
 // b) Create the function that makes the test pass.
+// convert input to array, loop through while using ['a', 'e', 'i', 'o', 'u'].includes(arr[i]). return first truthy response
+const vowelIndex = str => {
+  let arr = str.split('')
+  for(let i=0; i<arr.length; i++){
+    if(['a', 'e', 'i', 'o', 'u'].includes(arr[i])){ return i }
+  }
+}
